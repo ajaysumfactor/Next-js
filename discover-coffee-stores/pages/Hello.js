@@ -1,5 +1,7 @@
+import styles from '../styles/Hello.module.css';
 const Hello =()=>{
-    return <div>Hello world!
+    console.log(styles);
+    return <div className={styles.containeer}>Hello world!
         This is codebase
     </div>
 }
