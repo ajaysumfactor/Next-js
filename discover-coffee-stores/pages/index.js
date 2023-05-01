@@ -17,7 +17,7 @@ console.log("Hi banner button");
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}> 
-      <Banner buttonText="View tore nearby" handleOnClick={handleOnBannerBtnClick}/>
+      <Banner buttonText="View store nearby" handleOnClick={handleOnBannerBtnClick}/>
 
       </main>
     </>
