@@ -1,12 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-
+import Banner from "../components/banner"
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  console.log(styles);
+const handleOnBannerBtnClick =()=>{
+console.log("Hi banner button");
+ };
   return (
     <>
       <Head>
@@ -15,11 +16,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div>
-           <h1>Coffee Connoisseur</h1>
-        </div>
- 
+      <main className={styles.main}> 
+      <Banner buttonText="View tore nearby" handleOnClick={handleOnBannerBtnClick}/>
 
       </main>
     </>
