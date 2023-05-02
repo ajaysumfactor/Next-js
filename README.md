@@ -6,3 +6,5 @@
     1. Index routes
     2. Nested route
     3. Dynamic routes
+## Next js Dynamic Route
+    Next js provode Hooks called {useRouter} that allow us to route and read the value from browser(URL);
