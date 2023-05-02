@@ -9,6 +9,9 @@ const CoffeeStore=()=>{
         <Link href="/">
             Back to the home
         </Link>
+        <Link href="/coffee-store/dynamic">
+            Go to s page dynamic 
+        </Link>
     </div>
 }
 export default CoffeeStore
