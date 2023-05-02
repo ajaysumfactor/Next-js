@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image';
  import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Banner from "../components/banner"
@@ -18,7 +19,9 @@ console.log("Hi banner button");
       </Head>
       <main className={styles.main}> 
       <Banner buttonText="View store nearby" handleOnClick={handleOnBannerBtnClick}/>
-
+      <div className={styles.heroImage}>
+      <Image src="/static/hero-image.png" width={700} height={400} />
+      </div>
       </main>
     </>
   )
