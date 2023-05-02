@@ -1,10 +1,14 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router'
 const CoffeeStore=()=>{
     const route=useRouter();
     console.log(route);
     // return <div>Coffee store page</div>
     return <div>
-        <p>Post : {route.query.id}</p>
+        <p>Post : {route.query.id}</p> 
+        <Link href="/">
+            Back to the home
+        </Link>
     </div>
 }
 export default CoffeeStore
