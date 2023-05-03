@@ -26,3 +26,10 @@
     4. Client side rendering
     
    
+## CDN (Content delivery Network)
+
+    It is a group of server spread across different geographical locations worldwide to enable the quick delivery of a website content.
+
+    Advantage:---
+        1. Decrease the response time 
+        2. Security
