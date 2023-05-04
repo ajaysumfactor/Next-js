@@ -8,6 +8,7 @@ import Card from "../components/card"
 import coffeeStores from '../data/coffee-stores.json'
 
 export async function getStaticProps(context) {
+  console.log('Hii! i am get static props and i only run on the server side  ');
   return {
     props: { coffeeStores}, // will be passed to the page component as props
   };
@@ -24,7 +25,7 @@ export async function getStaticProps(context) {
 
 
 export default function Home(props) {
-
+  console.log("hii! i am a client side code here by default ")
   console.log("props",props);
 
   const handleOnBannerBtnClick = () => {
