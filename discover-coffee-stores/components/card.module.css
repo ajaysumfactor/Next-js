@@ -18,10 +18,11 @@
     padding-right: 1rem /* 16px */;
   
     backdrop-filter: blur(10px);
+    margin: auto;
    }
   
   .cardHeaderWrapper {
-    margin-top: 0.75rem /* 12px */;
+     margin-top: 0.75rem /* 12px */;
     margin-bottom: 0.75rem /* 12px */;
   }
   
@@ -36,7 +37,7 @@
   }
   
   .cardImageWrapper {
-    color: var(--text-white-100);
+     color: var(--text-white-100);
   }
   
   .cardImage {

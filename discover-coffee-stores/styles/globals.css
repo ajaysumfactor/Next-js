@@ -73,6 +73,7 @@ button:focus {
  
 /* glass-morphism */
 .glass {
+  margin: auto;
   background: hsla(0, 0%, 100%, 0.4);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
