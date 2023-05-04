@@ -18,9 +18,7 @@
     padding-right: 1rem /* 16px */;
   
     backdrop-filter: blur(10px);
-    border: 2px solid green;
-    margin-top:5rem;
-  }
+   }
   
   .cardHeaderWrapper {
     margin-top: 0.75rem /* 12px */;
