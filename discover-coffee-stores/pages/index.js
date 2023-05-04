@@ -5,12 +5,12 @@ import styles from '../styles/Home.module.css'
 import Banner from "../components/banner"
 const inter = Inter({ subsets: ['latin'] })
 import Card from "../components/card"
-import coffeeStores from '../data/coffee-stores.json'
+import coffeeStoresData from '../data/coffee-stores.json'
 
 export async function getStaticProps(context) {
   console.log('Hii! i am get static props and i only run on the server side  ');
   return {
-    props: { coffeeStores}, // will be passed to the page component as props
+    props: { coffeeStores: coffeeStoresData }, // will be passed to the page component as props
   };
 }
 
@@ -26,12 +26,12 @@ export async function getStaticProps(context) {
 
 export default function Home(props) {
   console.log("hii! i am a client side code here by default ")
-  console.log("props",props);
+  console.log("props", props);
 
   const handleOnBannerBtnClick = () => {
     console.log("Hi banner button");
   };
-   return (
+  return (
     <div className={styles.container}>
 
       <Head>
@@ -46,26 +46,27 @@ export default function Home(props) {
           <Image src="/static/hero-image.png" width={700} height={400} />
         </div>
 
-        <div className={styles.cardLayout}>
-        
-        {coffeeStores.map((coffeeStore)=>{
-          return (
-           <Card
-           key={coffeeStore.id}
-            name={coffeeStore.name}
-           imgUrl={coffeeStore.imgUrl}
-           href={coffeeStore.websiteUrl}
-           className={styles.card}
-         />);
-         
-        })}
 
 
+        {props.coffeeStores.length > 0 && (
+          <>
+            <h2 className={styles.heading2}>Toronto stores</h2>
+            <div className={styles.cardLayout}>
 
-         
-           
-           
-        </div>
+              {props.coffeeStores.map((coffeeStore) => {
+                return (
+                  <Card
+                    key={coffeeStore.id}
+                    name={coffeeStore.name}
+                    imgUrl={coffeeStore.imgUrl}
+                    href={`/coffee-store/${coffeeStore.id}`}
+                    className={styles.card}
+                  />);
+
+              })}
+            </div>
+          </>
+        )}
       </main>
 
     </div>
