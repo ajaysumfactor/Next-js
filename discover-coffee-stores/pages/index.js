@@ -5,12 +5,12 @@ import styles from '../styles/Home.module.css'
 import Banner from "../components/banner"
 const inter = Inter({ subsets: ['latin'] })
 import Card from "../components/card"
-
+import coffeeStores from '../data/coffee-stores.json'
 export default function Home() {
   const handleOnBannerBtnClick = () => {
     console.log("Hi banner button");
   };
-  return (
+   return (
     <div className={styles.container}>
 
       <Head>
@@ -26,26 +26,23 @@ export default function Home() {
         </div>
 
         <div className={styles.cardLayout}>
-          <Card
-            className={styles.card}
-            name='DarkHorse Coffee'
-            imgUrl="/static/hero-image.png"
-            href="/coffee-store/darkhorse-coffee"
-          />
-          <Card
-            className={styles.card}
-            name="DarkHorse Coffee"
-            imgUrl="/static/hero-image.png"
-            href="/coffee-store/darkhose-coffee"
+        
+        {coffeeStores.map((coffeeStore)=>{
+          return (
+           <Card
+            name={coffeeStore.name}
+           imgUrl={coffeeStore.imgUrl}
+           href={coffeeStore.websiteUrl}
+           className={styles.card}
+         />);
+         
+        })}
 
-          />
-          <Card
-            className={styles.card}
-            name="DarkHorse Coffee"
-            imgUrl="/static/hero-image.png"
-            href="/coffee-store/darkhose-coffee"
 
-          />
+
+         
+           
+           
         </div>
       </main>
 
