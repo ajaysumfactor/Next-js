@@ -21,7 +21,7 @@ export function getStaticPaths() {
             { params: { id: '0' } },
             { params: { id: '1' } }
         ],
-        fallback : false,
+        fallback : true,
     };
 }
 
@@ -34,6 +34,10 @@ export function getStaticPaths() {
 const CoffeeStore = (props) => {
     const route = useRouter();
     console.log(route);
+
+    if(route.isFallback){
+        return <div>Loading...</div>
+    }
     console.log("props",props);
     // return <div>Coffee store page</div>
     return <div>
