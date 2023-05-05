@@ -9,6 +9,21 @@ import coffeeStoresData from '../data/coffee-stores.json'
 
 export async function getStaticProps(context) {
   console.log('Hii! i am get static props and i only run on the server side  ');
+
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'fsq3CAq6qX6P1D7MvsZKuqRuhkwypa4aDtUVmZf/jStgzHk='
+    }
+  };
+  
+  fetch('https://api.foursquare.com/v3/places/search', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+
+
   return {
     props: { coffeeStores: coffeeStoresData }, // will be passed to the page component as props
   };
