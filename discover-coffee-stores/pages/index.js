@@ -5,25 +5,16 @@ import styles from '../styles/Home.module.css'
 import Banner from "../components/banner"
 const inter = Inter({ subsets: ['latin'] })
 import Card from "../components/card"
-import coffeeStoresData from '../data/coffee-stores.json'
+import coffeeStoresData from '../data/coffee-stores.json';
+import { fetchCoffeeStores } from '../lib/coffee-store';
 
 export async function getStaticProps(context) {
   console.log('Hii! i am get static props and i only run on the server side  ');
 
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: process.env.FOURSQUARE_API_KEY,
-    }
-  };
-  
-  const response = await fetch('https://api.foursquare.com/v3/places/search?query=coffee&ll=25.330002686772296%2C82.96530818316812&limit=6', options)
-  const data = await response.json();
-  console.log(data.results);
+  const coffeeStores=await fetchCoffeeStores();
 
   return {
-    props: { coffeeStores: data.results }, // will be passed to the page component as props
+    props: { coffeeStores, }, // will be passed to the page component as props
   };
 }
 
