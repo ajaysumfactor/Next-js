@@ -14,11 +14,11 @@ export async function getStaticProps(context) {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'fsq3CAq6qX6P1D7MvsZKuqRuhkwypa4aDtUVmZf/jStgzHk='
+      Authorization: process.env.FOURSQUARE_API_KEY,
     }
   };
   
-  const response = await fetch('https://api.foursquare.com/v3/places/search?query=coffee&ll=25.31898595727061%2C82.97552202992664&limit=6', options)
+  const response = await fetch('https://api.foursquare.com/v3/places/search?query=coffee&ll=25.330002686772296%2C82.96530818316812&limit=6', options)
   const data = await response.json();
   console.log(data.results);
 
