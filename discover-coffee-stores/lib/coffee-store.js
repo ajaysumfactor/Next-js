@@ -12,7 +12,7 @@ const options = {
   };
   
   const response = await fetch(getUrlForCoffeeStores(
-    "25.318210133651462,82.97346209828062",
+    "19.084124283768357,72.88391149751224",
     "coffee",
     6
   ), options)
