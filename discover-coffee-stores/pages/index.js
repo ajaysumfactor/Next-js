@@ -66,6 +66,7 @@ export default function Home(props) {
                     href={`/coffee-store/${coffeeStore.fsq_id}`}
                     className={styles.card}
                   />);
+                  
 
               })}
             </div>

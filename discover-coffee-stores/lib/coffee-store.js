@@ -19,7 +19,7 @@ const getListOfCoffeeStorePhoto = async () => {
   const photos = await unsplash.search.getPhotos({
     query: 'coffie shop',
     page: 1,
-    perPage: 1,
+    perPage: 6,
   });
   const arrayResults = photos.response.results.map((res) => res.urls["small"]); //showing the particular url here ;
   return arrayResults;
@@ -28,7 +28,7 @@ const getListOfCoffeeStorePhoto = async () => {
 
 export const fetchCoffeeStores = async () => {
   const photo=await getListOfCoffeeStorePhoto();
-
+  console.log(photo);
   const options = {
     method: 'GET',
     headers: {
@@ -43,10 +43,10 @@ export const fetchCoffeeStores = async () => {
     6
   ), options)
   const data = await response.json();
-  return data.results.map((result)=>{
+  return data.results.map((result,idx)=>{
     return{
     ...result,
-    imgUrl: photo[0],
+    imgUrl: photo[idx],
     };
   });
 
