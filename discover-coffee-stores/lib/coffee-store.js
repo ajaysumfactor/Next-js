@@ -13,7 +13,20 @@ const unsplash = createApi({
 const getUrlForCoffeeStores=(latLong,query,limit)=>{
 return `https://api.foursquare.com/v3/places/search?query=${query}&ll=${latLong}&limit=${limit}`
 };
+
 export const fetchCoffeeStores=async()=>{
+  unsplash.search.getPhotos({
+    query: 'cat',
+    page: 1,
+    perPage: 10,
+    color: 'green',
+    orientation: 'portrait',
+  });
+
+
+
+
+
 const options = {
     method: 'GET',
     headers: {
