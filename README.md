@@ -13,4 +13,10 @@
 ## React Hookss
 
 ### useState Hooks
-    
+    step:---
+    1. import { useState } from "react";
+    2. useState accepts an initial state and returns two values:
+        1. The current state.
+        2. Afunction that update the state.
+        3. To update the state, we can call the function returned by useState.
+        4. 
