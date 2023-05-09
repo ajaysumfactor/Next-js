@@ -44,9 +44,13 @@ export const fetchCoffeeStores = async () => {
   ), options)
   const data = await response.json();
   return data.results.map((result,idx)=>{
+    const neighborhood=result.location.neighborhood;
     return{
-    ...result,
-    imgUrl: photo[idx],
+    id: result.fsq_id,
+    name: result.name,
+    address: result.location.address,
+    neighborhood: neighborhood>0 ? neighborhood[0]:"",
+    imgUrl: photo.length>0 ? photo[idx] : null,
     };
   });
 
