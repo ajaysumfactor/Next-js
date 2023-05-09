@@ -7,9 +7,29 @@ import Image from 'next/image';
 import { fetchCoffeeStores } from '../../lib/coffee-store.js';
 import cls from "classnames";
 
+export async function getStaticPaths() {
+    const coffeeStores = await fetchCoffeeStores();
+    const paths = coffeeStores.map(CoffeeStore => {
+        return {
+            params: {
+                id: CoffeeStore.id.toString(),
+            },
+        };
+    });
+    console.log(paths);
+    return {
+        paths,
+        fallback: true,
+    };
+}
+
+
+
+
+
 export async function getStaticProps(staticProps) {
     const params = staticProps.params;
-    console.log("params", params);
+    console.log("params---", params);
 
     const coffeeStores = await fetchCoffeeStores();
     return {
@@ -22,20 +42,7 @@ export async function getStaticProps(staticProps) {
 }
 
 
-export async function getStaticPaths() {
-    const coffeeStores = await fetchCoffeeStores();
-    const paths = coffeeStores.map(CoffeeStore => {
-        return {
-            params: {
-                id: CoffeeStore.id.toString(),
-            },
-        };
-    });
-    return {
-        paths,
-        fallback: true,
-    };
-}
+
 
 
 
@@ -44,6 +51,7 @@ export async function getStaticPaths() {
 
 
 const CoffeeStore = (props) => {
+    console.log(props);
     const route = useRouter();
     console.log(route);
 
