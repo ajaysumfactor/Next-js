@@ -7,3 +7,6 @@
     based on condition---
         1. If they allow, then retreave the data.
         2. else we would not be able to retreave the        data/location.
+    
+## [Link to Geolocation API Docs](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API)
+
