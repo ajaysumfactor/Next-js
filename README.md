@@ -1,9 +1,9 @@
-# Static coffee store page:---> 
+# Coffee store by location
+## Overview
+    1. Render store based on their location
 
-    1. classnames
-    2. getstaticprops
-    3. getstaticPath
-    4. implement static site generation
-    5. Fallback
-    6. Set Foursquare API
-    
+## Geolocation API
+    The geolocation API allows the users to provide their location to web applications .
+    based on condition---
+        1. If they allow, then retreave the data.
+        2. else we would not be able to retreave the        data/location.
