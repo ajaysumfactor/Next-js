@@ -30,3 +30,8 @@
         useEffect(<function>, <dependency>)
 
         In my project useEffect Hook is dependent on (latLong) minute i click on the view store nearby button it will fetch the current location of user and (latLong has now some different value ) so our function will run and render data on UI.
+
+### NEXT_PUBLIC_--PREFIX
+    By default all environment variables loaded through (.env.local) ,And that is only available in the node.js environment ,To access token on client side i use NEXT_PUBLIC_ Prefix in variable name in env.local file.
+
+    In my project i used = (useEffect hoook ) --perform side effect(fetching data).And react component is rendered on client side . 
