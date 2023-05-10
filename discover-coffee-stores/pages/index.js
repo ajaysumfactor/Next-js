@@ -7,6 +7,8 @@ const inter = Inter({ subsets: ['latin'] })
 import Card from "../components/card"
 import coffeeStoresData from '../data/coffee-stores.json';
 import { fetchCoffeeStores } from '../lib/coffee-store';
+import userTrackLocation from '../hooks/track-location';
+
 
 export async function getStaticProps(context) {
   console.log('Hii! i am get static props and i only run on the server side  ');
@@ -19,22 +21,17 @@ export async function getStaticProps(context) {
 }
 
 
-
-
-
-
-
-
-
-
-
 export default function Home(props) {
   console.log("hii! i am a client side code here by default ")
   console.log("props", props);
+  const {handleTrackLocation,latLong,locationErrorMessage}=userTrackLocation(); //destructring 
 
+  console.log("latlong :->"+latLong+","+"locationErrorMessage:-> "+locationErrorMessage);
   const handleOnBannerBtnClick = () => {
     console.log("Hi banner button");
+    handleTrackLocation();
   };
+
   return (
     <div className={styles.container}>
 
