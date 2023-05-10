@@ -8,7 +8,7 @@ import Card from "../components/card"
 import coffeeStoresData from '../data/coffee-stores.json';
 import { fetchCoffeeStores } from '../lib/coffee-store';
 import userTrackLocation from '../hooks/track-location';
-
+import {useState,useEffect} from 'react';
 
 export async function getStaticProps(context) {
   console.log('Hii! i am get static props and i only run on the server side  ');
@@ -25,8 +25,24 @@ export default function Home(props) {
   console.log("hii! i am a client side code here by default ")
   console.log("props", props);
   const {handleTrackLocation,latLong,locationErrorMessage,isFindingLocation}=userTrackLocation(); //destructring 
-
+  
   console.log("latlong :->"+latLong+","+"locationErrorMessage:-> "+locationErrorMessage);
+
+  useEffect( ()=>{
+    async function setCoffeeStoreByLocation(){
+    if(latLong){
+      try{
+        const fetchedCoffeeStores = await fetchCoffeeStores(latLong,30);
+        console.log({fetchedCoffeeStores});
+      }
+      catch(error){
+       console.log(error);
+      }
+    }
+  }
+  setCoffeeStoreByLocation();
+    
+  },[latLong])
   const handleOnBannerBtnClick = () => {
     console.log("Hi banner button");
     handleTrackLocation();

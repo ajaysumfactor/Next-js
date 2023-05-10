@@ -10,7 +10,7 @@ function userTrackLocation() {
     function success(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        setLatLong(`"lattitude: "${latitude}, "longitude: "${longitude}`);
+        setLatLong(`${latitude},${longitude}`);
         setLocationErrorMessage("");
 
         setIsFindingLocation(false);

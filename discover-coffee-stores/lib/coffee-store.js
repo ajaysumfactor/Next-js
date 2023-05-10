@@ -2,7 +2,7 @@
 import { createApi } from 'unsplash-js';
 
 const unsplash = createApi({
-  accessKey: process.env.UNSPLASH_ACCESS_KEY,
+  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY,
 
 });
 
@@ -19,28 +19,30 @@ const getListOfCoffeeStorePhoto = async () => {
   const photos = await unsplash.search.getPhotos({
     query: 'coffie shop',
     // page: 1,
-    perPage: 6,
+    perPage: 40,
   });
   const arrayResults = photos.response.results.map((res) => res.urls["small"]); //showing the particular url here ;
   return arrayResults;
 }
 
 
-export const fetchCoffeeStores = async () => {
+export const fetchCoffeeStores = async (
+  latLong="19.084124283768357,72.88391149751224",
+  limit=6) => {
   const photo=await getListOfCoffeeStorePhoto();
   console.log(photo);
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: process.env.FOURSQUARE_API_KEY,
+      Authorization: process.env.NEXT_PUBLIC_FOURSQUARE_API_KEY,
     }
   };
 
   const response = await fetch(getUrlForCoffeeStores(
-    "19.084124283768357,72.88391149751224",
+    latLong,
     "coffee",
-    6
+    limit
   ), options)
   const data = await response.json();
   return data.results.map((result,idx)=>{
