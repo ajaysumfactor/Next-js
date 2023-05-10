@@ -27,7 +27,9 @@
 .container {
   margin-bottom: 14rem /* 224px */;
 }
-
+.sectionWrapper{
+  margin-top: 3.5rem;
+}
 .main {
   margin-top: 2.5rem /* 40px */;
   margin-left: auto;

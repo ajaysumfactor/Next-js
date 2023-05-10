@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
 export default function Home(props) {
   console.log("hii! i am a client side code here by default ")
   console.log("props", props);
-  const {handleTrackLocation,latLong,locationErrorMessage}=userTrackLocation(); //destructring 
+  const {handleTrackLocation,latLong,locationErrorMessage,isFindingLocation}=userTrackLocation(); //destructring 
 
   console.log("latlong :->"+latLong+","+"locationErrorMessage:-> "+locationErrorMessage);
   const handleOnBannerBtnClick = () => {
@@ -42,7 +42,9 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Banner buttonText="View store nearby" handleOnClick={handleOnBannerBtnClick} />
+        <Banner buttonText={isFindingLocation ? "Locating..." :"View store nearby"} handleOnClick={handleOnBannerBtnClick} />
+
+       {locationErrorMessage && <p>Something went wrong : {locationErrorMessage}</p>}
         <div className={styles.heroImage}>
           <Image src="/static/hero-image.png" width={700} height={400} />
         </div>
@@ -51,6 +53,7 @@ export default function Home(props) {
 
         {props.coffeeStores.length > 0 && (
           <>
+          <div className={styles.sectionWrapper}>
             <h2 className={styles.heading2}>Toronto stores</h2>
             <div className={styles.cardLayout}>
 
@@ -66,6 +69,7 @@ export default function Home(props) {
                   
 
               })}
+            </div>
             </div>
           </>
         )}
