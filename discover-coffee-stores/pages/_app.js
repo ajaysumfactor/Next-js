@@ -1,7 +1,22 @@
 import '@/styles/globals.css'
+import { createContext } from 'react'
+const StoreContext =createContext();
+
+const StoreProvider = ({children})=>{
+  const initialState={
+    latLong: "",
+    coffeeStore: [],
+  };
+  return (
+  <StoreContext.Provider  value={{state: initialState}}>
+  {children}
+  </StoreContext.Provider>
+  );
+}
 
 export default function App({ Component, pageProps }) {
-  return <div><Component {...pageProps} />
-  
-  </div>
+  return <StoreProvider>
+          <Component {...pageProps} />
+        
+          </StoreProvider>
 }
