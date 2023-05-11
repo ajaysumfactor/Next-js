@@ -32,11 +32,12 @@ export async function getStaticProps(staticProps) {
     console.log("params---", params);
 
     const coffeeStores = await fetchCoffeeStores();
+    const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
+        return CoffeeStore.id.toString() === params.id;
+    });
     return {
         props: {
-            CoffeeStore: coffeeStores.find(CoffeeStore => {
-                return CoffeeStore.id.toString() === params.id;
-            }),
+            CoffeeStore: findCoffeeStoreById ? findCoffeeStoreById : {},
         },
     };
 }
@@ -59,7 +60,7 @@ const CoffeeStore = (props) => {
         return <div>Loading...</div>
     }
 
-    const { address,neighborhood, name, imgUrl } = props.CoffeeStore;
+    const { address, neighborhood, name, imgUrl } = props.CoffeeStore;
 
     const handleUpvoteButton = () => { };
     // console.log("props",props);
