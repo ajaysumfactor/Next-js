@@ -26,7 +26,11 @@ export default function Home(props) {
   console.log("props", props);
   const { handleTrackLocation, latLong, locationErrorMessage, isFindingLocation } = userTrackLocation(); //destructring 
 
-  // console.log("latlong :->"+latLong+","+"locationErrorMessage:-> "+locationErrorMessage);
+
+
+//===================================================================================================================
+
+// console.log("latlong :->"+latLong+","+"locationErrorMessage:-> "+locationErrorMessage);
   const [coffeeStores, setCoffeStores] = useState('');
   const [coffeeStoresError, setCoffeStoresError] = useState(null);
 
@@ -47,6 +51,9 @@ export default function Home(props) {
     setCoffeeStoreByLocation();
 
   }, [latLong])
+
+//===================================================================================================================
+
   const handleOnBannerBtnClick = () => {
     console.log("Hi banner button");
     handleTrackLocation();
@@ -72,6 +79,7 @@ export default function Home(props) {
           <Image src="/static/hero-image.png" width={700} height={400} />
         </div>
 {/* ========================================================================================================================================= */}
+
 {coffeeStores.length > 0 && (
           <>
             <div className={styles.sectionWrapper}>
@@ -98,7 +106,7 @@ export default function Home(props) {
         {props.coffeeStores.length > 0 && (
           <>
             <div className={styles.sectionWrapper}>
-              <h2 className={styles.heading2}>Toronto stores</h2>
+              <h2 className={styles.heading2} style={{color: "green"}}>Toronto stores</h2>
               <div className={styles.cardLayout}>
 
                 {props.coffeeStores.map((coffeeStore) => {
