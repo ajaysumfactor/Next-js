@@ -1,8 +1,8 @@
 import '@/styles/globals.css'
 import { createContext, useReducer } from 'react'
-const StoreContext = createContext();
+export const StoreContext = createContext();
 
-const ACTION_TYPES = {
+export const ACTION_TYPES = {
   SET_LAT_LONG: 'SET_LAT_LONG',
   SET_COFFEE_STORES: 'SET_COFFEE_STORES'
 }
@@ -12,7 +12,7 @@ const storeReducer = (state, action) => {
       return { ...state, latLong: action.payload.latLong };
     }
     case ACTION_TYPES.SET_COFFEE_STORES: {
-      return { ...state, coffeeStore: action.payload.coffeeStore };
+      return { ...state, coffeeStores: action.payload.coffeeStores };
     }
     default:
       throw new Error(`unhandled action type: ${action.type}`);
@@ -30,11 +30,11 @@ const storeReducer = (state, action) => {
 const StoreProvider = ({ children }) => { //takes a childern props 
   const initialState = { //initial object is initilised || we can take here a state also
     latLong: "",
-    coffeeStore: [],
+    coffeeStores: [],
   };
   const [state, dispatch] = useReducer(storeReducer, initialState);
   return (
-    <StoreContext.Provider value={{ state: dispatch }}>
+    <StoreContext.Provider value={{ state, dispatch }}>
       {children}
     </StoreContext.Provider>
   );

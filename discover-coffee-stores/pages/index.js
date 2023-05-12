@@ -8,7 +8,10 @@ import Card from "../components/card"
 import coffeeStoresData from '../data/coffee-stores.json';
 import { fetchCoffeeStores } from '../lib/coffee-store';
 import userTrackLocation from '../hooks/track-location';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ACTION_TYPES, StoreContext } from './_app';
+
+
 
 export async function getStaticProps(context) {
   console.log('Hii! i am get static props and i only run on the server side  ');
@@ -24,15 +27,18 @@ export async function getStaticProps(context) {
 export default function Home(props) {
   console.log("hii! i am a client side code here by default ")
   console.log("props", props);
-  const { handleTrackLocation, latLong, locationErrorMessage, isFindingLocation } = userTrackLocation(); //destructring 
+  const { handleTrackLocation, locationErrorMessage, isFindingLocation } = userTrackLocation(); //destructring 
 
 
 
 //===================================================================================================================
 
 // console.log("latlong :->"+latLong+","+"locationErrorMessage:-> "+locationErrorMessage);
-  const [coffeeStores, setCoffeStores] = useState('');
+  // const [coffeeStores, setCoffeStores] = useState('');
   const [coffeeStoresError, setCoffeStoresError] = useState(null);
+
+  const {dispatch,state}= useContext(StoreContext);
+  const {coffeeStores,latLong}=state;
 
   useEffect(() => {
     async function setCoffeeStoreByLocation() {
@@ -40,7 +46,13 @@ export default function Home(props) {
         try {
           const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 30);
           console.log({ fetchedCoffeeStores });
-          setCoffeStores(fetchedCoffeeStores);
+          // setCoffeStores(fetchedCoffeeStores);
+          dispatch({
+            type: ACTION_TYPES.SET_COFFEE_STORES,
+            payload:{
+              coffeeStores: fetchedCoffeeStores,
+            },
+          })
         }
         catch (error) {
           console.log({error});
