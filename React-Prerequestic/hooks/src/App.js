@@ -10,6 +10,8 @@ const reducer = (state, action) => {
 
 
 console.log("state: --",state);
+console.log(typeof(state));//object
+console.log(typeof(action));//object
 console.log("action:--",action);
 
   switch (action.type) {
@@ -25,11 +27,11 @@ console.log("action:--",action);
 
 //Provider context 
 
-const AppProvider = () => {
-  const [state, dispatch] = useReducer(reducer,  { count: 0 });
+const AppProvider = ({ children }) => {//children : tells 
+  const [state, dispatch] = useReducer(reducer,  { count: 0 }); //reducer is the function 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
-      {/* {children} */}
+      {children}
     </AppContext.Provider>
   )
 }

@@ -7,10 +7,11 @@ import { useContext } from "react";
 
 const CounterPlus = () => {
     const { state, dispatch } = useContext(AppContext);
-
-    const increment = () => {
-        dispatch({ type: "INCREMENT" });
-    };
+    console.log(state);//object
+    console.log(typeof(dispatch));//function
+    // const increment = () => {
+    //     dispatch({ type: "INCREMENT" });
+    // };
 
     const decrement = () => {
         dispatch({ type: "DECREMENT" });
@@ -21,7 +22,8 @@ const CounterPlus = () => {
     return (
         <div>
         <h1>Count: {state.count}</h1>
-        <button onClick={increment}>Increment</button>
+        <button onClick={()=>dispatch({type: "INCREMENT"})}>Increment</button>
+        {/* here above arrow function is must if i will not apply arrow function here then it is run infinite loop for the increment automatically  */}
         <button onClick={decrement}>Decrement</button>
       </div>
     );
@@ -31,3 +33,7 @@ const CounterPlus = () => {
 
 export default CounterPlus;
 
+
+
+//dispatch function:--
+// To update the state, you call dispatch and pass an action object as an argument. The action object typically has a type property that represents the type of action being performed and can contain additional data if necessary.
