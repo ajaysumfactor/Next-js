@@ -6,6 +6,7 @@ function geoFindMe() {
     mapLink.textContent = "";
   
     function success(position) {
+      console.log(position);
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
   
@@ -15,9 +16,10 @@ function geoFindMe() {
     }
   
     function error() {
+      console.log(error);
       status.textContent = "Unable to retrieve your location";
     }
-  
+    console.log(navigator.geolocation);
     if (!navigator.geolocation) {
       status.textContent = "Geolocation is not supported by your browser";
     } else {

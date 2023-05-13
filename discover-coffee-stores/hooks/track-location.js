@@ -8,7 +8,7 @@ function userTrackLocation() {
 
 const {dispatch}=useContext(StoreContext);
 
-    function success(position) {
+    function success(position) { 
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         // setLatLong(`${latitude},${longitude}`);

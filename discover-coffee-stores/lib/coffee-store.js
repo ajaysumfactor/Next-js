@@ -51,7 +51,7 @@ export const fetchCoffeeStores = async (
     id: result.fsq_id,
     name: result.name,
     address: result.location.address,
-    neighborhood: neighborhood>0 ? neighborhood[0]:"",
+    neighborhood: neighborhood?.length>0 ? neighborhood[0]:"",
     imgUrl: photo.length>0 ? photo[idx] : null,
     };
   });
