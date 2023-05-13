@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { fetchCoffeeStores } from '../../lib/coffee-store.js';
 import cls from "classnames";
 import { useContext, useEffect,useState } from 'react';
-import { StoreContext } from '../_app';
+import { StoreContext } from '../../Store/store-context';
 import {isEmpty} from '../../utils/';
 export async function getStaticPaths() {
     const coffeeStores = await fetchCoffeeStores();

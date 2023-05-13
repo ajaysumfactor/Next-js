@@ -9,7 +9,7 @@ import coffeeStoresData from '../data/coffee-stores.json';
 import { fetchCoffeeStores } from '../lib/coffee-store';
 import userTrackLocation from '../hooks/track-location';
 import { useState, useEffect, useContext } from 'react';
-import { ACTION_TYPES, StoreContext } from './_app';
+import { ACTION_TYPES, StoreContext } from '../Store/store-context';
 
 
 
