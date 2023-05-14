@@ -2,7 +2,6 @@
 ## Overview
     1. Render store based on their location
 
-<<<<<<< HEAD
     1. classnames
     2. getstaticprops
     3. getstaticPath
@@ -11,7 +10,6 @@
     6. Set Foursquare API
     
     
-=======
 ## Geolocation API
     The geolocation API allows the users to provide their location to web applications .
     based on condition---
@@ -45,4 +43,6 @@
     By default all environment variables loaded through (.env.local) ,And that is only available in the node.js environment ,To access token on client side i use NEXT_PUBLIC_ Prefix in variable name in env.local file.
 
     In my project i used = (useEffect hoook ) --perform side effect(fetching data).And react component is rendered on client side . 
->>>>>>> Section_8
+
+
+# Section:--9
