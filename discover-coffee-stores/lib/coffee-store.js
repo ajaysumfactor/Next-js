@@ -2,7 +2,7 @@
 import { createApi } from 'unsplash-js';
 
 const unsplash = createApi({
-  accessKey: process.env.UNSPLASH_ACCESS_KEY,
+  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY,
 
 });
 
@@ -18,29 +18,31 @@ const getUrlForCoffeeStores = (latLong, query, limit) => {
 const getListOfCoffeeStorePhoto = async () => {
   const photos = await unsplash.search.getPhotos({
     query: 'coffie shop',
-    page: 1,
-    perPage: 6,
+    // page: 1,
+    perPage: 30,
   });
   const arrayResults = photos.response.results.map((res) => res.urls["small"]); //showing the particular url here ;
   return arrayResults;
 }
 
 
-export const fetchCoffeeStores = async () => {
+export const fetchCoffeeStores = async (
+  latLong="38.76391769302142,-104.85806130813452",
+  limit=6) => {
   const photo=await getListOfCoffeeStorePhoto();
   console.log(photo);
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: process.env.FOURSQUARE_API_KEY,
+      Authorization: process.env.NEXT_PUBLIC_FOURSQUARE_API_KEY,
     }
   };
 
   const response = await fetch(getUrlForCoffeeStores(
-    "19.084124283768357,72.88391149751224",
+    latLong,
     "coffee",
-    6
+    limit
   ), options)
   const data = await response.json();
   return data.results.map((result,idx)=>{
@@ -49,7 +51,7 @@ export const fetchCoffeeStores = async () => {
     id: result.fsq_id,
     name: result.name,
     address: result.location.address,
-    neighborhood: neighborhood>0 ? neighborhood[0]:"",
+    neighborhood: neighborhood?.length>0 ? neighborhood[0]:"",
     imgUrl: photo.length>0 ? photo[idx] : null,
     };
   });

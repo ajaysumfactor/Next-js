@@ -6,7 +6,9 @@ import coffeeStoreData from '../../data/coffee-stores.json';
 import Image from 'next/image';
 import { fetchCoffeeStores } from '../../lib/coffee-store.js';
 import cls from "classnames";
-
+import { useContext, useEffect,useState } from 'react';
+import { StoreContext } from '../../Store/store-context';
+import {isEmpty} from '../../utils/';
 export async function getStaticPaths() {
     const coffeeStores = await fetchCoffeeStores();
     const paths = coffeeStores.map(CoffeeStore => {
@@ -32,11 +34,12 @@ export async function getStaticProps(staticProps) {
     console.log("params---", params);
 
     const coffeeStores = await fetchCoffeeStores();
+    const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
+        return CoffeeStore.id.toString() === params.id;
+    });
     return {
         props: {
-            CoffeeStore: coffeeStores.find(CoffeeStore => {
-                return CoffeeStore.id.toString() === params.id;
-            }),
+            coffeeStore: findCoffeeStoreById ? findCoffeeStoreById : {},
         },
     };
 }
@@ -50,8 +53,8 @@ export async function getStaticProps(staticProps) {
 
 
 
-const CoffeeStore = (props) => {
-    console.log(props);
+const CoffeeStore = (initialprops) => {
+    // console.log(props);
     const route = useRouter();
     console.log(route);
 
@@ -59,7 +62,26 @@ const CoffeeStore = (props) => {
         return <div>Loading...</div>
     }
 
-    const { address,neighborhood, name, imgUrl } = props.CoffeeStore;
+
+    const id = route.query.id;
+
+
+    const [coffeeStore,setCoffeStore]=useState(initialprops.coffeeStore);
+
+    const {state : {coffeeStores},}=useContext(StoreContext);
+
+    useEffect(()=>{
+        if(isEmpty(initialprops.coffeeStore)){
+            if(coffeeStores.length>0){
+                const findCoffeeStoreById = coffeeStores.find((CoffeeStore) => {
+                    return CoffeeStore.id.toString() === id;
+                });
+                setCoffeStore(findCoffeeStoreById);
+            }
+        }
+    },[id]);
+
+    const { address, neighborhood, name, imgUrl } = coffeeStore;
 
     const handleUpvoteButton = () => { };
     // console.log("props",props);
