@@ -1,5 +1,4 @@
-# Coffee store by location
-Render store based on their location
+# Sction_7
 
 ## Overview
 
@@ -11,6 +10,10 @@ Render store based on their location
     6. Set Foursquare API
     
     
+
+# Section_9   
+## Coffee store by location
+    Render store based on their location  
 ## Geolocation API
     The geolocation API allows the users to provide their location to web applications .
     based on condition---
