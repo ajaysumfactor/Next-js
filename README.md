@@ -11,7 +11,7 @@
     
     
 
-# Section_9   
+# Section_8   
 ## Coffee store by location
     Render store based on their location  
 ## Geolocation API
