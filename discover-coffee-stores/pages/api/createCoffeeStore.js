@@ -8,8 +8,9 @@ console.log({ table });
 const createCoffeStore = async (req, res) => {//by default it is get request 
     console.log(req);//method : GET By default 
     if (req.method == 'POST') {
+        const {id,name,address,neighborhood,voting,imgUrl}=req.body;
         try {
-            const findCoffeeStoreRecords = await table.select({ filterByFormula: `id="393"` }).firstPage();
+            const findCoffeeStoreRecords = await table.select({ filterByFormula: `id=${id}` }).firstPage();
             console.log(findCoffeeStoreRecords);//data is in [{preoperty: value,property: value}]
             if (findCoffeeStoreRecords.length !== 0) {
                 const records = findCoffeeStoreRecords.map((record) => {
@@ -21,12 +22,12 @@ const createCoffeStore = async (req, res) => {//by default it is get request
                 const createRecords = await table.create([
                     {
                         fields:{
-                            id: "393",
-                            name: "My favorite chay",
-                            address: "my address",
-                            neighborhood: "some neighborhood",
-                            voting: 234,
-                            imgUrl: "http://myimage.com",
+                            id,
+                            name,
+                            address,
+                            neighborhood,
+                            voting,
+                            imgUrl,
                         },
                     },
                 ]);
