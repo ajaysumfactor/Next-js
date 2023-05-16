@@ -117,9 +117,15 @@ const CoffeeStore = (initialprops) => {
                     setCoffeStore(findCoffeeStoreById);
                     handleCreateCoffeeStore(findCoffeeStoreById);
                 }
+               
             }
         }
-    }, [id]);
+            else{
+                console.log("ndsssdsndnsndnsndsndnsndsndnsndnsnd")
+                handleCreateCoffeeStore(initialprops.coffeeStore);
+            }
+        
+    }, [id,initialprops,initialprops.coffeeStore]);
 
     const { address, neighborhood, name, imgUrl } = coffeeStore;
 
