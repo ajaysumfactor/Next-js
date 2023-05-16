@@ -9,7 +9,7 @@ const createCoffeStore = async (req, res) => {//by default it is get request
     console.log(req);//method : GET By default 
     if (req.method == 'POST') {
         try {
-            const findCoffeeStoreRecords = await table.select({ filterByFormula: `id="1"` }).firstPage();
+            const findCoffeeStoreRecords = await table.select({ filterByFormula: `id="393"` }).firstPage();
             console.log(findCoffeeStoreRecords);//data is in [{preoperty: value,property: value}]
             if (findCoffeeStoreRecords.length !== 0) {
                 const records = findCoffeeStoreRecords.map((record) => {
@@ -18,7 +18,23 @@ const createCoffeStore = async (req, res) => {//by default it is get request
                 res.json(records);
             }
             else {
-                res.json({ message: "create a record" });
+                const createRecords = await table.create([
+                    {
+                        fields:{
+                            id: "393",
+                            name: "My favorite chay",
+                            address: "my address",
+                            neighborhood: "some neighborhood",
+                            voting: 234,
+                            imgUrl: "http://myimage.com",
+                        },
+                    },
+                ]);
+                // res.json({ message: "create a record" });
+                const records = createRecords.map((record) => {
+                    return { ...record.fields, };
+                });
+                res.json(records);
             }
         }
         catch (err) {
