@@ -3,13 +3,13 @@ import { table, getMinifiedRecords } from "../../lib/airTable";
 
 // console.log({ table });
 
-const createCoffeStore = async (req, res) => {//by default it is get request 
+const createCoffeeStore = async (req, res) => {//by default it is get request 
     // console.log(req);//method : GET By default 
     if (req.method == 'POST') {
         const { id, name, address, neighborhood, voting, imgUrl } = req.body;
         try {
             if (id) {
-                const findCoffeeStoreRecords = await table.select({ filterByFormula: `id=${id}` }).firstPage();
+                const findCoffeeStoreRecords = await table.select({ filterByFormula: `id="${id}"` }).firstPage();
                 // console.log(findCoffeeStoreRecords);//data is in [{preoperty: value,property: value}]
                 if (findCoffeeStoreRecords.length !== 0) {
                     const records = getMinifiedRecords(findCoffeeStoreRecords);
@@ -58,4 +58,4 @@ const createCoffeStore = async (req, res) => {//by default it is get request
     }
 };
 
-export default createCoffeStore;
+export default createCoffeeStore;
