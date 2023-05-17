@@ -128,8 +128,12 @@ const CoffeeStore = (initialprops) => {
     }, [id,initialprops,initialprops.coffeeStore]);
 
     const { address, neighborhood, name, imgUrl } = coffeeStore;
+    const [votingCount,setVotingCount]=useState(0);
 
-    const handleUpvoteButton = () => { };
+    const handleUpvoteButton = () => {
+      const count=votingCount+1;
+      setVotingCount(count);
+     };
     // console.log("props",props);
     // return <div>Coffee store page</div>
     return (
@@ -183,7 +187,7 @@ const CoffeeStore = (initialprops) => {
                         )}
                         <div className={styles.iconWrapper}>
                             <Image src="/static/icons/star.svg" width="24" height="24" />
-                            <p className={styles.text}>1</p>
+                            <p className={styles.text}>{votingCount}</p>
                         </div>
 
                         <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
