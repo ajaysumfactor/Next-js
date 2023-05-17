@@ -8,7 +8,8 @@ import { fetchCoffeeStores } from '../../lib/coffee-store.js';
 import cls from "classnames";
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '../../Store/store-context';
-import { isEmpty } from '../../utils/';
+import useSWR from 'swr';
+import { fetcher, isEmpty } from '../../utils/';
 export async function getStaticPaths() {
     const coffeeStores = await fetchCoffeeStores();
     const paths = coffeeStores.map(CoffeeStore => {
@@ -117,23 +118,37 @@ const CoffeeStore = (initialprops) => {
                     setCoffeStore(findCoffeeStoreById);
                     handleCreateCoffeeStore(findCoffeeStoreById);
                 }
-               
+
             }
         }
-            else{
-                console.log("ndsssdsndnsndnsndsndnsndsndnsndnsnd")
-                handleCreateCoffeeStore(initialprops.coffeeStore);
-            }
-        
-    }, [id,initialprops,initialprops.coffeeStore]);
+        else {
+            console.log("ndsssdsndnsndnsndsndnsndsndnsndnsnd")
+            handleCreateCoffeeStore(initialprops.coffeeStore);
+        }
+
+    }, [id, initialprops, initialprops.coffeeStore]);
 
     const { address, neighborhood, name, imgUrl } = coffeeStore;
-    const [votingCount,setVotingCount]=useState(0);
+    const [votingCount, setVotingCount] = useState(1);
+//==================================================================================================================
+    //Here get the data from the id of dynamic page render voting value from the data extrating from database
+    const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
+    useEffect(() => {
+        if (data && data.length > 0) {
+            console.log("data from SWR", data);
+            setCoffeStore(data[0]);
+            setVotingCount(data[0].voting);
+        }
+    }, [data])
 
     const handleUpvoteButton = () => {
-      const count=votingCount+1;
-      setVotingCount(count);
-     };
+        const count = votingCount + 1;
+        setVotingCount(count);
+    };
+    if (error) {
+        return <div>Something went wrong retrieving coffee store page</div>;
+    }
+//=======================================================================================================================    
     // console.log("props",props);
     // return <div>Coffee store page</div>
     return (
