@@ -53,7 +53,7 @@ export default function Home(props) {
     }
     setCoffeeStoreByLocation();
 
-  }, [latLong])
+  }, [latLong,dispatch])
 
   //===================================================================================================================
 
@@ -78,7 +78,7 @@ export default function Home(props) {
 
           {coffeeStoresError && <p>Something went wrong : {coffeeStoresError}</p>}
           <div className={styles.heroImage}></div>
-          <Image src="/static/hero-image.png" width={700} height={400} />
+          <Image src="/static/hero-image.png" width={700} height={400} alt="hero image"/>
         </div>
         {/* ========================================================================================================================================= */}
 

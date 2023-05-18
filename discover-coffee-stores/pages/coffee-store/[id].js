@@ -63,7 +63,7 @@ const CoffeeStore = (initialprops) => {
     const id = route.query.id;
 
 
-    const [coffeeStore, setCoffeStore] = useState(initialprops.coffeeStore);
+    const [coffeeStore, setCoffeStore] = useState(initialprops.coffeeStore || {});
 
     const { state: { coffeeStores }, } = useContext(StoreContext);
 
@@ -119,9 +119,9 @@ const CoffeeStore = (initialprops) => {
             handleCreateCoffeeStore(initialprops.coffeeStore);
         }
 
-    }, [id, initialprops, initialprops.coffeeStore]);
+    }, [id, coffeeStores, initialprops.coffeeStore]);
 
-    const { address, neighborhood, name, imgUrl } = coffeeStore;
+    const { address="", neighborhood="", name="", imgUrl="" } = coffeeStore;
     const [votingCount, setVotingCount] = useState(0);
     //==================================================================================================================
     //Here get the data from the id of dynamic page render voting value from the data extrating from database
@@ -132,6 +132,10 @@ const CoffeeStore = (initialprops) => {
             setVotingCount(data[0].voting);
         }
     }, [data])
+
+    if(route.isFallback){
+        return <div>Loading...</div>
+    }
 
     const handleUpvoteButton = async () => {
         try {
@@ -199,18 +203,18 @@ const CoffeeStore = (initialprops) => {
                     <div className={cls("glass", styles.col2)}>
                         {address && (
                             <div className={styles.iconWrapper}>
-                                <Image src="/static/icons/places.svg" width="24" height="24" />
+                                <Image src="/static/icons/places.svg" width="24" height="24" alt="places icon" />
                                 <p className={styles.text}>{address}</p>
                             </div>
                         )}
                         {neighborhood && (
                             <div className={styles.iconWrapper}>
-                                <Image src="/static/icons/nearMe.svg" width="24" height="24" />
+                                <Image src="/static/icons/nearMe.svg" width="24" height="24" alt="near me icon" />
                                 <p className={styles.text}>{neighborhood}</p>
                             </div>
                         )}
                         <div className={styles.iconWrapper}>
-                            <Image src="/static/icons/star.svg" width="24" height="24" />
+                            <Image src="/static/icons/star.svg" width="24" height="24" alt="rate icon" />
                             <p className={styles.text}>{votingCount}</p>
                         </div>
 
