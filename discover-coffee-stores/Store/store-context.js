@@ -7,8 +7,7 @@ export const ACTION_TYPES = {
   SET_COFFEE_STORES: 'SET_COFFEE_STORES'
 }
 const storeReducer = (state, action) => {
-  console.log(state);
-  switch (action.type) {
+   switch (action.type) {
     case ACTION_TYPES.SET_LAT_LONG: {
       return { ...state, latLong: action.payload.latLong };
     }

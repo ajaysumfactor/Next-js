@@ -1,10 +1,6 @@
 import { table, getMinifiedRecords, findRecordByFilter, } from "../../lib/airTable";
 
-
-// console.log({ table });
-
-const createCoffeeStore = async (req, res) => {//by default it is get request 
-    // console.log(req);//method : GET By default 
+const createCoffeeStore = async (req, res) => {
     if (req.method == 'POST') {
         const { id, name, address, neighborhood, voting, imgUrl } = req.body;
         try {
@@ -28,9 +24,7 @@ const createCoffeeStore = async (req, res) => {//by default it is get request
                                 },
                             },
                         ]);
-                        console.log(createRecords);
-                        // res.json({ message: "create a record" });
-                        const records = getMinifiedRecords(createRecords);
+                         const records = getMinifiedRecords(createRecords);
                         res.json(records);
                     }
                     else {

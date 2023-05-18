@@ -3,8 +3,7 @@ const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process
 const table = base('coffee-stores');//store reference to a table in airtable websites 
 
 const getMinifiedRecord = (record) => {
-    // console.log(record);
-    return {
+     return {
         recordId:record.id,
         ...record.fields,
 

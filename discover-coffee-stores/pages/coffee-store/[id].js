@@ -19,7 +19,6 @@ export async function getStaticPaths() {
             },
         };
     });
-    console.log(paths);
     return {
         paths,
         fallback: true,
@@ -32,7 +31,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(staticProps) {
     const params = staticProps.params;
-    console.log("params---", params);
 
     const coffeeStores = await fetchCoffeeStores();
     const findCoffeeStoreById = coffeeStores.find(CoffeeStore => {
@@ -55,9 +53,7 @@ export async function getStaticProps(staticProps) {
 
 
 const CoffeeStore = (initialprops) => {
-    // console.log(props);
     const route = useRouter();
-    console.log(route);
 
     if (route.isFallback) {
         return <div>Loading...</div>
@@ -92,9 +88,7 @@ const CoffeeStore = (initialprops) => {
                     address: address || "",
                 }),
             });
-            console.log(response);
             const dbCoffeeStore = await response.json();
-            console.log({ dbCoffeeStore });
         } catch (error) {
             console.error("Error creating coffee store", error);
         }
@@ -122,7 +116,6 @@ const CoffeeStore = (initialprops) => {
             }
         }
         else {
-            console.log("ndsssdsndnsndnsndsndnsndsndnsndnsnd")
             handleCreateCoffeeStore(initialprops.coffeeStore);
         }
 
@@ -135,7 +128,6 @@ const CoffeeStore = (initialprops) => {
     const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
     useEffect(() => {
         if (data && data.length > 0) {
-            console.log("data from SWR", data);
             setCoffeStore(data[0]);
             setVotingCount(data[0].voting);
         }
@@ -153,9 +145,7 @@ const CoffeeStore = (initialprops) => {
                     id,
                 }),
             });
-            // console.log(response);
             const dbCoffeeStore = await response.json();
-            // console.log({ dbCoffeeStore });
             if (dbCoffeeStore && dbCoffeeStore.length > 0) {
                 const count = votingCount + 1;
                 setVotingCount(count);
@@ -170,8 +160,6 @@ const CoffeeStore = (initialprops) => {
         return <div>Something went wrong retrieving coffee store page</div>;
     }
     //=======================================================================================================================    
-    // console.log("props",props);
-    // return <div>Coffee store page</div>
     return (
         <div className={styles.layout}>
             <Head>

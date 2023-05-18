@@ -30,8 +30,7 @@ export const fetchCoffeeStores = async (
   latLong="38.76391769302142,-104.85806130813452",
   limit=6) => {
   const photo=await getListOfCoffeeStorePhoto();
-  console.log(photo);
-  const options = {
+   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',

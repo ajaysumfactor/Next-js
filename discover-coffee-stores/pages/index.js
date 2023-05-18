@@ -14,8 +14,6 @@ import { ACTION_TYPES, StoreContext } from '../Store/store-context';
 
 
 export async function getStaticProps(context) {
-  console.log('Hii! i am get static props and i only run on the server side  ');
-
   const coffeeStores = await fetchCoffeeStores();
 
   return {
@@ -24,20 +22,15 @@ export async function getStaticProps(context) {
 }
 
 export default function Home(props) {
-  console.log("hii! i am a client side code here by default ")
-  console.log("props", props);
   const { handleTrackLocation, locationErrorMessage, isFindingLocation } = userTrackLocation(); //destructring 
 
 
 
-//===================================================================================================================
-
-// console.log("latlong :->"+latLong+","+"locationErrorMessage:-> "+locationErrorMessage);
-  // const [coffeeStores, setCoffeStores] = useState('');
+  //===================================================================================================================
   const [coffeeStoresError, setCoffeStoresError] = useState(null);
 
-  const {dispatch,state}= useContext(StoreContext);
-  const {coffeeStores,latLong}=state;
+  const { dispatch, state } = useContext(StoreContext);
+  const { coffeeStores, latLong } = state;
 
   useEffect(() => {
     async function setCoffeeStoreByLocation() {
@@ -45,18 +38,15 @@ export default function Home(props) {
         try {
           const response = await fetch(`/api/getCoffeeStoreByLocation?latLong=${latLong}&limit=30`);
           const coffeeStores = await response.json();
-          // console.log({ fetchedCoffeeStores });
-          // setCoffeStores(fetchedCoffeeStores);
           dispatch({
             type: ACTION_TYPES.SET_COFFEE_STORES,
-            payload:{
+            payload: {
               coffeeStores,
             },
           });
           setCoffeStoresError('');
         }
         catch (error) {
-          console.log({error});
           setCoffeStoresError(error.message);
         }
       }
@@ -65,11 +55,9 @@ export default function Home(props) {
 
   }, [latLong])
 
-//===================================================================================================================
-console.log(coffeeStores);
+  //===================================================================================================================
 
   const handleOnBannerBtnClick = () => {
-    // console.log("Hi banner button");
     handleTrackLocation();
   };
 
@@ -87,14 +75,14 @@ console.log(coffeeStores);
 
         {locationErrorMessage && <p>Something went wrong : {locationErrorMessage}</p>}
         <div className={styles.heroImage}>
-        
-        {coffeeStoresError && <p>Something went wrong : {coffeeStoresError}</p>}
-        <div className={styles.heroImage}></div>
+
+          {coffeeStoresError && <p>Something went wrong : {coffeeStoresError}</p>}
+          <div className={styles.heroImage}></div>
           <Image src="/static/hero-image.png" width={700} height={400} />
         </div>
-{/* ========================================================================================================================================= */}
+        {/* ========================================================================================================================================= */}
 
-{coffeeStores.length > 0 && (
+        {coffeeStores.length > 0 && (
           <>
             <div className={styles.sectionWrapper}>
               <h2 className={styles.heading2}>Stores Near Me</h2>
@@ -116,11 +104,11 @@ console.log(coffeeStores);
             </div>
           </>
         )}
-{/* ========================================================================================================================================= */}
+        {/* ========================================================================================================================================= */}
         {props.coffeeStores.length > 0 && (
           <>
             <div className={styles.sectionWrapper}>
-              <h2 className={styles.heading2} style={{color: "green"}}>Toronto stores</h2>
+              <h2 className={styles.heading2} style={{ color: "green" }}>Toronto stores</h2>
               <div className={styles.cardLayout}>
 
                 {props.coffeeStores.map((coffeeStore) => {
