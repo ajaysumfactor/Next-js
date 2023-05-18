@@ -26,6 +26,7 @@
 
 .container {
   margin-bottom: 14rem /* 224px */;
+  /* width: 100%; */
 }
 .sectionWrapper{
   margin-top: 3.5rem;
