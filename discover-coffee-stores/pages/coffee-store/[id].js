@@ -129,7 +129,7 @@ const CoffeeStore = (initialprops) => {
     }, [id, initialprops, initialprops.coffeeStore]);
 
     const { address, neighborhood, name, imgUrl } = coffeeStore;
-    const [votingCount, setVotingCount] = useState(1);
+    const [votingCount, setVotingCount] = useState(0);
     //==================================================================================================================
     //Here get the data from the id of dynamic page render voting value from the data extrating from database
     const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);

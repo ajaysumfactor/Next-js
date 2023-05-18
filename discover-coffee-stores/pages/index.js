@@ -23,7 +23,6 @@ export async function getStaticProps(context) {
   };
 }
 
-
 export default function Home(props) {
   console.log("hii! i am a client side code here by default ")
   console.log("props", props);
@@ -68,8 +67,9 @@ export default function Home(props) {
 
 //===================================================================================================================
 console.log(coffeeStores);
+
   const handleOnBannerBtnClick = () => {
-    console.log("Hi banner button");
+    // console.log("Hi banner button");
     handleTrackLocation();
   };
 
