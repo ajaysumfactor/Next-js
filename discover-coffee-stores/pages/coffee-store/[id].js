@@ -130,7 +130,7 @@ const CoffeeStore = (initialprops) => {
 
     const { address, neighborhood, name, imgUrl } = coffeeStore;
     const [votingCount, setVotingCount] = useState(1);
-//==================================================================================================================
+    //==================================================================================================================
     //Here get the data from the id of dynamic page render voting value from the data extrating from database
     const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
     useEffect(() => {
@@ -141,14 +141,35 @@ const CoffeeStore = (initialprops) => {
         }
     }, [data])
 
-    const handleUpvoteButton = () => {
-        const count = votingCount + 1;
-        setVotingCount(count);
+    const handleUpvoteButton = async () => {
+        try {
+
+            const response = await fetch("/api/favouriteCoffeeStoreById", {
+                method: "PUT", // or 'PUT'
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id,
+                }),
+            });
+            // console.log(response);
+            const dbCoffeeStore = await response.json();
+            // console.log({ dbCoffeeStore });
+            if (dbCoffeeStore && dbCoffeeStore.length > 0) {
+                const count = votingCount + 1;
+                setVotingCount(count);
+            }
+        } catch (error) {
+            console.error("Error creating coffee store", error);
+        }
+
+
     };
     if (error) {
         return <div>Something went wrong retrieving coffee store page</div>;
     }
-//=======================================================================================================================    
+    //=======================================================================================================================    
     // console.log("props",props);
     // return <div>Coffee store page</div>
     return (
