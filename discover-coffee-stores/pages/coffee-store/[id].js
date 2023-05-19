@@ -44,31 +44,16 @@ export async function getStaticProps(staticProps) {
 }
 
 
-
-
-
-
-
-
-
-
 const CoffeeStore = (initialprops) => {
     const route = useRouter();
 
-    if (route.isFallback) {
-        return <div>Loading...</div>
-    }
-
-
     const id = route.query.id;
 
-
     const [coffeeStore, setCoffeStore] = useState(initialprops.coffeeStore || {});
+    const [votingCount, setVotingCount] = useState(0);
+
 
     const { state: { coffeeStores }, } = useContext(StoreContext);
-
-
-
 
     const handleCreateCoffeeStore = async (coffeeStore) => {
         try {
@@ -95,13 +80,6 @@ const CoffeeStore = (initialprops) => {
 
     };
 
-
-
-
-
-
-
-
     useEffect(() => {
         if (isEmpty(initialprops.coffeeStore)) {
             if (coffeeStores.length > 0) {
@@ -119,12 +97,8 @@ const CoffeeStore = (initialprops) => {
             handleCreateCoffeeStore(initialprops.coffeeStore);
         }
 
-    }, [id, coffeeStores, initialprops.coffeeStore]);
+    }, [id, initialprops, coffeeStores, initialprops.coffeeStore]);
 
-    const { address="", neighborhood="", name="", imgUrl="" } = coffeeStore;
-    const [votingCount, setVotingCount] = useState(0);
-    //==================================================================================================================
-    //Here get the data from the id of dynamic page render voting value from the data extrating from database
     const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
     useEffect(() => {
         if (data && data.length > 0) {
@@ -133,7 +107,21 @@ const CoffeeStore = (initialprops) => {
         }
     }, [data])
 
-    if(route.isFallback){
+    if (route.isFallback) {
+        return <div>Loading...</div>
+    }
+
+
+
+
+
+
+    const { address = "", neighborhood = "", name = "", imgUrl = "" } = coffeeStore;
+    //==================================================================================================================
+    //Here get the data from the id of dynamic page render voting value from the data extrating from database
+
+
+    if (route.isFallback) {
         return <div>Loading...</div>
     }
 

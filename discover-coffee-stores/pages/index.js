@@ -3,9 +3,7 @@ import Image from 'next/image';
 import { Inter } from 'next/font/google'
 import styles from '../styles/Home.module.css'
 import Banner from "../components/banner"
-const inter = Inter({ subsets: ['latin'] })
 import Card from "../components/card"
-import coffeeStoresData from '../data/coffee-stores.json';
 import { fetchCoffeeStores } from '../lib/coffee-store';
 import userTrackLocation from '../hooks/track-location';
 import { useState, useEffect, useContext } from 'react';
