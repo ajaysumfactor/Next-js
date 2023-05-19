@@ -10,8 +10,7 @@ html,
 body {
   font-family: IBMPlexSans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-   
-    background: url("/static/back.png");
+      background: url("/static/back.png");
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -24,6 +23,27 @@ a {
   color: inherit;
   text-decoration: none;
 }
+@font-face {
+  font-family: "IBMPlexSans";
+  font-style: normal;
+  font-weight: 500;
+  src: url(/fonts/IBMPlexSans-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "IBMPlexSans";
+  font-style: normal;
+  font-weight: 600;
+  src: url(/fonts/IBMPlexSans-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "IBMPlexSans";
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/IBMPlexSans-Bold.ttf) format("truetype");
+}
+
  
 
 :root {
@@ -72,3 +92,6 @@ button:focus {
   background: hsla(0, 0%, 100%, 0.7);
   border: 1px solid #fff;
 }
+
+ 
+ 
